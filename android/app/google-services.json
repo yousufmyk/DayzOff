@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160463287371",
+    "project_id": "dayzoff-c2455",
+    "storage_bucket": "dayzoff-c2455.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160463287371:android:dd6d52db5e7ac5b11989ce",
+        "android_client_info": {
+          "package_name": "com.example.dayzoff"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNNhq-ZZv5JPv_m_kqx2QJrviVfpMUDn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
