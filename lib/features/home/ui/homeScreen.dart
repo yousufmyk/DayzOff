@@ -1,6 +1,8 @@
 import 'package:dayzoff/features/constants/constants.dart';
 import 'package:dayzoff/features/dataModels/employeeModel.dart';
 import 'package:dayzoff/features/utils/textStyle.dart';
+import 'package:dayzoff/features/widgets/requestWidget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -114,16 +116,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            
             Expanded(
               child: TabBarView(
+
+                  //dragStartBehavior: DragStartBehavior.down,
                   controller: tabController,
-                  children: const <Widget>[
-                    Text('This is 1'),
-                    Text('This is 2'),
-                    Text('This is 3'),
+                  children: <Widget>[
+                    Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: 10,
+                              itemBuilder: (context, snapshot) {
+                                return RequestWidget(
+                                  idNum: '10233310',
+                                  appliedDate: '12-02-2024',
+                                  asignStatus: 'Superviso',
+                                );
+                              }),
+                        )
+                      ],
+                    ),
+                    const Text('This is 2'),
+                    const Text('This is 3'),
                   ]),
             )
           ],
