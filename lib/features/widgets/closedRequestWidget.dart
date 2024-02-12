@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../utils/textStyle.dart';
 
 // ignore: must_be_immutable
-class RequestWidget extends StatelessWidget {
-  RequestWidget({
+class CloseRequestWidget extends StatelessWidget {
+  CloseRequestWidget({
     required this.appliedDate,
     required this.asignStatus,
     required this.idNum,
@@ -22,7 +22,9 @@ class RequestWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: deepGreenColor),
+          borderRadius: BorderRadius.circular(16),
+          color: orangeColor,
+        ),
         child: Column(
           children: [
             ListTile(

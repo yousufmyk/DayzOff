@@ -1,6 +1,8 @@
 import 'package:dayzoff/features/constants/constants.dart';
 import 'package:dayzoff/features/dataModels/employeeModel.dart';
 import 'package:dayzoff/features/utils/textStyle.dart';
+import 'package:dayzoff/features/widgets/closedRequestWidget.dart';
+import 'package:dayzoff/features/widgets/rejectedRequestWidget.dart';
 import 'package:dayzoff/features/widgets/requestWidget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -132,14 +134,44 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 return RequestWidget(
                                   idNum: '10233310',
                                   appliedDate: '12-02-2024',
-                                  asignStatus: 'Superviso',
+                                  asignStatus: 'Supervisor',
                                 );
                               }),
                         )
                       ],
                     ),
-                    const Text('This is 2'),
-                    const Text('This is 3'),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: 10,
+                              itemBuilder: (context, snapshot) {
+                                return CloseRequestWidget(
+                                  idNum: '10233310',
+                                  appliedDate: '12-02-2024',
+                                  asignStatus: 'Supervisor',
+                                );
+                              }),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: 10,
+                              itemBuilder: (context, snapshot) {
+                                return RejectedRequestWidget(
+                                  idNum: '10233310',
+                                  appliedDate: '12-02-2024',
+                                  asignStatus: 'Supervisor',
+                                );
+                              }),
+                        )
+                      ],
+                    ),
+                    //const Text('This is 2'),
+                    //const Text('This is 3'),
                   ]),
             )
           ],
