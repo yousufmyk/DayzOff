@@ -1,6 +1,6 @@
 import 'package:dayzoff/features/auth/ui/loginScreen.dart';
 import 'package:dayzoff/firebase_options.dart';
-import 'package:dayzoff/homeScreen.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
