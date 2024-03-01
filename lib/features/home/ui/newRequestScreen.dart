@@ -1,3 +1,4 @@
+import 'package:dayzoff/features/utils/textStyle.dart';
 import 'package:flutter/material.dart';
 
 class NewRequestScreen extends StatelessWidget {
@@ -31,16 +32,57 @@ class NewRequestScreen extends StatelessWidget {
       tag: 'FloatingActionButtonAnimation',
 
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 50,),
-            IconButton(onPressed: (){
-              Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back_ios_new_rounded)),
-            Text('This is the new request Screen')
-          ],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_circle_left_outlined,
+                        size: 40,
+                      )),
+                  Text(
+                    'New Leave Request',
+                    style: boldTextStyle(22, Colors.white),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        //Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_circle_left_outlined,
+                        size: 40,
+                        color: Colors.transparent,
+                      )),
+                ],
+              ),
+              // Szi
+              // TextField(
+              //   decoration: InputDecoration(
+              //     focusColor: orangeColor,
+              //     border: OutlineInputBorder(
+              //       borderSide: BorderSide(
+
+              //         width: 4
+              //       )
+              //     )
+              //   ),
+              //   maxLines: 10,
+
+              // )
+            ],
+          ),
         ),
       ),
     );

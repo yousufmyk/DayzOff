@@ -31,9 +31,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       listenWhen: (previous, current) => current is HomeActionState,
       buildWhen: (previous, current) => current is! HomeActionState,
       listener: (context, state) {
-        if(state is NavigateToNewRequestScreenState){
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NewRequestScreen()));
+        if (state is NavigateToNewRequestScreenState) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const NewRequestScreen()));
         }
       },
       builder: (context, state) {
@@ -44,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               homeBloc.add(NavigateToNewRequestScreenEvent());
             },
             backgroundColor: orangeColor,
-            child:  Icon(
+            child: Icon(
               Icons.mode_edit_outline_outlined,
             ),
           ),
@@ -60,7 +62,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   children: [
                     Text(
                       " Hi ${widget.employeeData!.preferredName} ! 👋",
-                      style: boldTextStyle(22, Colors.white),
+                      style: boldTextStyle(
+                          22, const Color.fromRGBO(255, 255, 255, 1)),
                     ),
                     PopupMenuButton(
                       color: orangeColor,
@@ -85,16 +88,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             title: Text('Profile'),
                           ),
                         ),
-                        const PopupMenuItem(
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.mode_night_outlined,
-                              color: Colors.white,
-                            ),
-                            title: Text('Dark Mode'),
-                            //trailing: Switch(),
-                          ),
-                        ),
+                        // const PopupMenuItem(
+                        //   child: ListTile(
+                        //     leading: Icon(
+                        //       Icons.mode_night_outlined,
+                        //       color: Colors.white,
+                        //     ),
+                        //     title: Text('Dark Mode'),
+                        //     //trailing: Switch(),
+                        //   ),
+                        // ),
                         const PopupMenuItem(
                           child: ListTile(
                             leading: Icon(
@@ -139,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
                 Expanded(
                   child: TabBarView(
-            
+
                       //dragStartBehavior: DragStartBehavior.down,
                       controller: tabController,
                       children: <Widget>[

@@ -3,7 +3,8 @@ part of 'home_bloc.dart';
 @immutable
 abstract class HomeState {}
 
- class HomeActionState extends HomeState{} 
-  class HomeInitial extends HomeState {}
+class HomeActionState extends HomeState {}
 
- class NavigateToNewRequestScreenState extends HomeActionState{}
+class HomeInitial extends HomeState {}
+
+class NavigateToNewRequestScreenState extends HomeActionState {}

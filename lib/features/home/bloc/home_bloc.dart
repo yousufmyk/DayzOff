@@ -10,10 +10,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<NavigateToNewRequestScreenEvent>(navigateToNewRequestScreenEvent);
   }
-  
-  
 
-  FutureOr<void> navigateToNewRequestScreenEvent(NavigateToNewRequestScreenEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> navigateToNewRequestScreenEvent(
+      NavigateToNewRequestScreenEvent event, Emitter<HomeState> emit) {
     emit(NavigateToNewRequestScreenState());
   }
 }
