@@ -46,14 +46,14 @@ class CloseRequestWidget extends StatelessWidget {
                         'New',
                         style: boldTextStyle(
                           8,
-                          Colors.white,
+                          
                         ),
                       ),
                     ),
                   ),
                   Text(
                     'ID#$idNum',
-                    style: boldTextStyle(13, Colors.white),
+                    style: boldTextStyle(13,),
                   )
                 ],
               ),
@@ -67,10 +67,10 @@ class CloseRequestWidget extends StatelessWidget {
                         height: 5,
                       ),
                       Text('🗓️ Applied On:',
-                          style: boldTextStyle(10, Colors.white)),
+                          style: boldTextStyle(10, )),
                       Text(
                         appliedDate,
-                        style: normalTextStyle(10, Colors.white),
+                        style: normalTextStyle(10, ),
                       )
                     ],
                   ),
@@ -80,10 +80,10 @@ class CloseRequestWidget extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Text('Status:', style: boldTextStyle(10, Colors.white)),
+                      Text('Status:', style: boldTextStyle(10, )),
                       Text(
                         asignStatus,
-                        style: normalTextStyle(10, Colors.white),
+                        style: normalTextStyle(10, ),
                       )
                     ],
                   ),
@@ -107,7 +107,7 @@ class CloseRequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Eidt',
-                      style: boldTextStyle(15, Colors.black),
+                      style: boldTextStyle(15, ),
                     ),
                   )),
                   PopupMenuItem(
@@ -118,7 +118,7 @@ class CloseRequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Delete',
-                      style: boldTextStyle(15, Colors.black),
+                      style: boldTextStyle(15,),
                     ),
                   )),
                 ],

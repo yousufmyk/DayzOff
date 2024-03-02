@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
         switch (state.runtimeType) {
           case LoadingState:
           return Scaffold(
+            
             body: Center(
               child: CircularProgressIndicator(
                 strokeWidth: 2,
@@ -41,8 +42,10 @@ class LoginScreen extends StatelessWidget {
           
           
           default: return Scaffold(
+          
           resizeToAvoidBottomInset: false,
           body: Center(
+            
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
@@ -63,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                   const Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.white,
+                      
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
@@ -71,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                   const Text(
                     'Please login to continue',
                     style: TextStyle(
-                      color: Colors.white,
+                      
                       //fontWeight: FontWeight.w200,
                     ),
                   ),

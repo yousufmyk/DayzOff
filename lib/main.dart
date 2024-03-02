@@ -1,4 +1,6 @@
 import 'package:dayzoff/features/auth/ui/loginScreen.dart';
+import 'package:dayzoff/features/theme/darkTheme.dart';
+import 'package:dayzoff/features/theme/lightTheme.dart';
 import 'package:dayzoff/firebase_options.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -21,11 +23,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      themeMode: ThemeMode.dark,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+
+      // darkTheme: ThemeData(brightness: Brightness.dark),
+      // themeMode: ThemeMode.dark,
       debugShowMaterialGrid: false,
       home: LoginScreen(),
     );

@@ -18,7 +18,7 @@ class AuthTextField extends StatelessWidget {
       cursorColor: orangeColor,
       decoration: InputDecoration(
         prefixIcon: icon,
-        prefixIconColor: grayColor,
+        //prefixIconColor: grayColor,
         //fillColor: const Color.fromARGB(132, 255, 255, 255),
         focusColor: Colors.orange,
         focusedBorder: OutlineInputBorder(
@@ -31,7 +31,7 @@ class AuthTextField extends StatelessWidget {
         ),
         hintText: hintText,
         hintStyle: const TextStyle(
-          color: dimgrayColor,
+          //color: dimgrayColor,
           fontWeight: FontWeight.w500,
         ),
         alignLabelWithHint: true,
