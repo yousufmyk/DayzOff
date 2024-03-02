@@ -44,14 +44,14 @@ class RequestWidget extends StatelessWidget {
                         'New',
                         style: boldTextStyle(
                           8,
-                          Colors.white,
+                          
                         ),
                       ),
                     ),
                   ),
                   Text(
                     'ID#$idNum',
-                    style: boldTextStyle(13, Colors.white),
+                    style: boldTextStyle(13,),
                   )
                 ],
               ),
@@ -65,10 +65,10 @@ class RequestWidget extends StatelessWidget {
                         height: 5,
                       ),
                       Text('🗓️ Applied On:',
-                          style: boldTextStyle(10, Colors.white)),
+                          style: boldTextStyle(10, )),
                       Text(
                         appliedDate,
-                        style: normalTextStyle(10, Colors.white),
+                        style: normalTextStyle(10, ),
                       )
                     ],
                   ),
@@ -78,17 +78,17 @@ class RequestWidget extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Text('Status:', style: boldTextStyle(10, Colors.white)),
+                      Text('Status:', style: boldTextStyle(10, )),
                       Text(
                         asignStatus,
-                        style: normalTextStyle(10, Colors.white),
+                        style: normalTextStyle(10, ),
                       )
                     ],
                   ),
                 ],
               ),
               trailing: PopupMenuButton(
-                color: grayColor,
+                color: orangeColor,
                 shadowColor: Colors.white,
                 position: PopupMenuPosition.under,
                 icon: const ImageIcon(
@@ -105,18 +105,19 @@ class RequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Eidt',
-                      style: boldTextStyle(15, Colors.black),
+                      style: boldTextStyle(15, ),
                     ),
                   )),
                   PopupMenuItem(
                       child: ListTile(
                     leading: const Icon(
-                      Icons.delete_outline_rounded,
+                      Icons.delete_forever_rounded,
                       color: Colors.redAccent,
                     ),
                     title: Text(
                       'Delete',
-                      style: boldTextStyle(15, Colors.black),
+                      style: boldTextStyle(15, ),
+                      //style: TextStyle(fontFamily: GoogleFonts()),
                     ),
                   )),
                 ],

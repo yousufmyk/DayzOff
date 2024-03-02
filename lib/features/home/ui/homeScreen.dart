@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     Text(
                       " Hi ${widget.employeeData!.preferredName} ! 👋",
                       style: boldTextStyle(
-                          22, const Color.fromRGBO(255, 255, 255, 1)),
+                          22, ),
                     ),
                     PopupMenuButton(
                       color: orangeColor,
@@ -79,30 +79,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         width: 40,
                       )),
                       itemBuilder: (context) => [
-                        const PopupMenuItem(
+                         PopupMenuItem(
                           child: ListTile(
                             leading: Icon(
                               Icons.person_2_outlined,
-                              color: Colors.white,
+                              
                             ),
                             title: Text('Profile'),
                           ),
                         ),
-                        // const PopupMenuItem(
-                        //   child: ListTile(
-                        //     leading: Icon(
-                        //       Icons.mode_night_outlined,
-                        //       color: Colors.white,
-                        //     ),
-                        //     title: Text('Dark Mode'),
-                        //     //trailing: Switch(),
-                        //   ),
-                        // ),
                         const PopupMenuItem(
                           child: ListTile(
                             leading: Icon(
                               Icons.settings_outlined,
-                              color: Colors.white,
+                              
                             ),
                             title: Text('Settings'),
                           ),
@@ -111,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: ListTile(
                             leading: Icon(
                               Icons.logout_rounded,
-                              color: Colors.white,
+                             
                             ),
                             title: Text('Log Out'),
                           ),

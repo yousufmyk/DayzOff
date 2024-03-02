@@ -54,7 +54,7 @@ class NewRequestScreen extends StatelessWidget {
                       )),
                   Text(
                     'New Leave Request',
-                    style: boldTextStyle(22, Colors.white),
+                    style: boldTextStyle(22, ),
                   ),
                   IconButton(
                       onPressed: () {
