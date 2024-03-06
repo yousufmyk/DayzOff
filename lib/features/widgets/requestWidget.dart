@@ -9,12 +9,14 @@ class RequestWidget extends StatelessWidget {
     required this.appliedDate,
     required this.asignStatus,
     required this.idNum,
+    this.reason,
     super.key,
   });
 
   String idNum;
   String appliedDate;
   String asignStatus;
+  String? reason;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,7 @@ class RequestWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(16), color: deepGreenColor),
         child: Column(
           children: [
-            ListTile(
-              // tileColor: orangeColor,
+            ExpansionTile(
               leading: Image.network(
                   'https://firebasestorage.googleapis.com/v0/b/dayzoff-c2455.appspot.com/o/Screenshot_2024-02-12_at_7.14.35_PM-removebg-preview.png?alt=media&token=2e90aae7-c1f9-44da-902a-c4b8d5b399ac'),
               title: Column(
@@ -44,14 +45,15 @@ class RequestWidget extends StatelessWidget {
                         'New',
                         style: boldTextStyle(
                           8,
-                          
                         ),
                       ),
                     ),
                   ),
                   Text(
                     'ID#$idNum',
-                    style: boldTextStyle(13,),
+                    style: boldTextStyle(
+                      13,
+                    ),
                   )
                 ],
               ),
@@ -65,10 +67,14 @@ class RequestWidget extends StatelessWidget {
                         height: 5,
                       ),
                       Text('🗓️ Applied On:',
-                          style: boldTextStyle(10, )),
+                          style: boldTextStyle(
+                            10,
+                          )),
                       Text(
                         appliedDate,
-                        style: normalTextStyle(10, ),
+                        style: normalTextStyle(
+                          10,
+                        ),
                       )
                     ],
                   ),
@@ -78,10 +84,15 @@ class RequestWidget extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Text('Status:', style: boldTextStyle(10, )),
+                      Text('Status:',
+                          style: boldTextStyle(
+                            10,
+                          )),
                       Text(
                         asignStatus,
-                        style: normalTextStyle(10, ),
+                        style: normalTextStyle(
+                          10,
+                        ),
                       )
                     ],
                   ),
@@ -105,7 +116,9 @@ class RequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Eidt',
-                      style: boldTextStyle(15, ),
+                      style: boldTextStyle(
+                        15,
+                      ),
                     ),
                   )),
                   PopupMenuItem(
@@ -116,12 +129,30 @@ class RequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Delete',
-                      style: boldTextStyle(15, ),
+                      style: boldTextStyle(
+                        15,
+                      ),
                       //style: TextStyle(fontFamily: GoogleFonts()),
                     ),
                   )),
                 ],
               ),
+              childrenPadding: const EdgeInsets.all(20),
+              children: [
+                Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('Reason:',
+                            style: boldTextStyle(
+                              13,
+                            ))),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(reason ?? 'No reason provided by employee'))
+                  ],
+                )
+              ],
             )
           ],
         ),

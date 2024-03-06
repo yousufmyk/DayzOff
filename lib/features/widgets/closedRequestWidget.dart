@@ -9,12 +9,14 @@ class CloseRequestWidget extends StatelessWidget {
     required this.appliedDate,
     required this.asignStatus,
     required this.idNum,
+    this.reason,
     super.key,
   });
 
   String idNum;
   String appliedDate;
   String asignStatus;
+  String? reason;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CloseRequestWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            ListTile(
+            ExpansionTile(
               // tileColor: orangeColor,
               leading: Image.network(
                   'https://firebasestorage.googleapis.com/v0/b/dayzoff-c2455.appspot.com/o/Screenshot_2024-02-12_at_7.14.35_PM-removebg-preview.png?alt=media&token=2e90aae7-c1f9-44da-902a-c4b8d5b399ac'),
@@ -123,6 +125,22 @@ class CloseRequestWidget extends StatelessWidget {
                   )),
                 ],
               ),
+              childrenPadding: const EdgeInsets.all(20),
+              children: [
+                Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('Reason:',
+                            style: boldTextStyle(
+                              13,
+                            ))),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(reason ?? 'No reason provided by employee'))
+                  ],
+                )
+              ],
             )
           ],
         ),
