@@ -7,15 +7,14 @@ class EmployeeData {
   final String? phoneNumber;
   final String? preferredName;
 
-
   EmployeeData({
-     this.preferredName,
-     this.department,
-     this.email,
-     this.employee,
-     this.fullName,
-     this.id,
-     this.phoneNumber,
+    this.preferredName,
+    this.department,
+    this.email,
+    this.employee,
+    this.fullName,
+    this.id,
+    this.phoneNumber,
   });
 
   factory EmployeeData.fromMap(Map<String, dynamic> data) {
@@ -23,10 +22,10 @@ class EmployeeData {
       department: data['department'],
       email: data['email'],
       employee: data['employee'],
-      fullName: data['fullname'],
+      fullName: data['fullName'],
       preferredName: data['preferredName'],
       id: data['id'],
-      phoneNumber: data['phonenumber'],
+      phoneNumber: data['phoneNumber'],
     );
   }
 }

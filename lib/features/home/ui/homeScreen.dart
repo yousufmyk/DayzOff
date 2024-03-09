@@ -15,14 +15,18 @@ class HomeScreen extends StatefulWidget {
   final EmployeeData? employeeData;
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreen> createState() =>
+      _HomeScreenState(employeeData: employeeData);
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  final EmployeeData? employeeData;
   late final TabController tabController =
       TabController(length: 3, vsync: this, initialIndex: 0);
 
   final HomeBloc homeBloc = HomeBloc();
+
+  _HomeScreenState({required this.employeeData});
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +39,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const NewRequestScreen()));
+                  builder: (context) => NewRequestScreen(
+                        employeeData: employeeData,
+                      )));
         }
       },
       builder: (context, state) {
         return Scaffold(
           floatingActionButton: FloatingActionButton(
-            heroTag: 'FloatingActionButtonAnimation',
+            //heroTag: 'FloatingActionButtonAnimation',
             onPressed: () {
               homeBloc.add(NavigateToNewRequestScreenEvent());
             },
             backgroundColor: orangeColor,
-            child: Icon(
+            child: const Icon(
               Icons.mode_edit_outline_outlined,
             ),
           ),
@@ -63,7 +69,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     Text(
                       " Hi ${widget.employeeData!.preferredName} ! 👋",
                       style: boldTextStyle(
-                          22, ),
+                        22,
+                      ),
                     ),
                     PopupMenuButton(
                       color: orangeColor,
@@ -79,11 +86,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         width: 40,
                       )),
                       itemBuilder: (context) => [
-                         PopupMenuItem(
+                        const PopupMenuItem(
                           child: ListTile(
                             leading: Icon(
                               Icons.person_2_outlined,
-                              
                             ),
                             title: Text('Profile'),
                           ),
@@ -92,7 +98,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: ListTile(
                             leading: Icon(
                               Icons.settings_outlined,
-                              
                             ),
                             title: Text('Settings'),
                           ),
@@ -101,7 +106,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: ListTile(
                             leading: Icon(
                               Icons.logout_rounded,
-                             
                             ),
                             title: Text('Log Out'),
                           ),

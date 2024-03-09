@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dayzoff/features/dataModels/employeeModel.dart';
@@ -52,7 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> loginEvent(LoginEvent event, Emitter<AuthState> emit) async {
-    final docRef =  fireStore.collection("users").doc(event.email);
+    final docRef = fireStore.collection("users").doc(event.email);
     //late final String dep;
     //late EmployeeData empData;
 
@@ -71,7 +70,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         //print(event.email);
         print('there is some error on getData bloc${e.toString()}');
         //This is the error I was getting when there was internet problem "there is some error on getData bloctype 'Null' is not a subtype of type 'String'
-        //" so need to fix this exception by doing this"e == theMsg" if true show there is some internet issue 
+        //" so need to fix this exception by doing this"e == theMsg" if true show there is some internet issue
       }
       // .then((value) => {
       //       print('user logged in'),

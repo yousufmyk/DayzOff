@@ -6,10 +6,12 @@ class AuthButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.text,
+    this.radious,
   });
 
   final String text;
   final VoidCallback onTap;
+  final double? radious;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class AuthButton extends StatelessWidget {
         height: 50,
         width: 150,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(radious ?? 25),
           color: orangeColor,
         ),
         child: Center(

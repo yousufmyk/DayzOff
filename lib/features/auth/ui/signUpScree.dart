@@ -48,7 +48,6 @@ class SignUpScreen extends StatelessWidget {
                     const Text(
                       'Create Account',
                       style: TextStyle(
-                        
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
@@ -59,9 +58,9 @@ class SignUpScreen extends StatelessWidget {
                     const Text(
                       'Please fill the input below here',
                       style: TextStyle(
-                        
-                        //fontWeight: FontWeight.w200,
-                      ),
+
+                          //fontWeight: FontWeight.w200,
+                          ),
                     ),
                     const SizedBox(
                       height: 25,
@@ -144,7 +143,7 @@ class SignUpScreen extends StatelessWidget {
                                 child: toHeroContext.widget,
                               ),
                             );
-                
+
                           case HeroFlightDirection.pop:
                             return Material(
                               color: Colors.transparent,

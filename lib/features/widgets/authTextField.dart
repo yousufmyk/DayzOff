@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
     super.key,
-    required this.hintText,required this.icon,  this.controller,
+    required this.hintText,
+    required this.icon,
+    this.controller,
   });
 
   final String? hintText;

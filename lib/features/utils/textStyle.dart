@@ -1,10 +1,15 @@
-  import 'package:flutter/material.dart';
-  import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-TextStyle boldTextStyle(double size,){
+TextStyle boldTextStyle(
+  double size,
+) {
   return GoogleFonts.poppins(fontSize: size, fontWeight: FontWeight.bold);
 }
-TextStyle normalTextStyle(double size,){
+
+TextStyle normalTextStyle(
+  double size,
+) {
   return GoogleFonts.poppins(fontSize: size, fontWeight: FontWeight.normal);
 }
 // TextStyle appstyleForMsg(double size,Color color, FontWeight fw){

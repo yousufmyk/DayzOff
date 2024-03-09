@@ -19,7 +19,7 @@ final class SignUpEvent extends AuthEvent {
   final String? email;
   final String? password;
 
-  SignUpEvent( {
+  SignUpEvent({
     required this.fullName,
     required this.preferredName,
     required this.employeID,

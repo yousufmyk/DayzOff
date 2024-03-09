@@ -48,14 +48,15 @@ class RejectedRequestWidget extends StatelessWidget {
                         'New',
                         style: boldTextStyle(
                           8,
-                          
                         ),
                       ),
                     ),
                   ),
                   Text(
                     'ID#$idNum',
-                    style: boldTextStyle(13, ),
+                    style: boldTextStyle(
+                      13,
+                    ),
                   )
                 ],
               ),
@@ -69,10 +70,14 @@ class RejectedRequestWidget extends StatelessWidget {
                         height: 5,
                       ),
                       Text('🗓️ Applied On:',
-                          style: boldTextStyle(10, )),
+                          style: boldTextStyle(
+                            10,
+                          )),
                       Text(
                         appliedDate,
-                        style: normalTextStyle(10, ),
+                        style: normalTextStyle(
+                          10,
+                        ),
                       )
                     ],
                   ),
@@ -82,10 +87,15 @@ class RejectedRequestWidget extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Text('Status:', style: boldTextStyle(10, )),
+                      Text('Status:',
+                          style: boldTextStyle(
+                            10,
+                          )),
                       Text(
                         asignStatus,
-                        style: normalTextStyle(10, ),
+                        style: normalTextStyle(
+                          10,
+                        ),
                       )
                     ],
                   ),
@@ -109,7 +119,9 @@ class RejectedRequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Eidt',
-                      style: boldTextStyle(15, ),
+                      style: boldTextStyle(
+                        15,
+                      ),
                     ),
                   )),
                   PopupMenuItem(
@@ -120,7 +132,9 @@ class RejectedRequestWidget extends StatelessWidget {
                     ),
                     title: Text(
                       'Delete',
-                      style: boldTextStyle(15, ),
+                      style: boldTextStyle(
+                        15,
+                      ),
                     ),
                   )),
                 ],
