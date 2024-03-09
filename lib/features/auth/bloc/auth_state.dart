@@ -21,6 +21,8 @@ final class AuthErrorState extends AuthActionState {
   AuthErrorState({required this.errorMessage});
 }
 
+final class SignUpSucessState extends AuthActionState {}
+
 final class LoadingState extends AuthState {}
 
 final class SucessState extends AuthState {}

@@ -2,6 +2,7 @@ import 'package:dayzoff/features/auth/bloc/auth_bloc.dart';
 import 'package:dayzoff/features/auth/ui/signUpScree.dart';
 import 'package:dayzoff/features/constants/constants.dart';
 import 'package:dayzoff/features/home/ui/homeScreen.dart';
+import 'package:dayzoff/features/utils/utils.dart';
 import 'package:dayzoff/features/widgets/authButton.dart';
 import 'package:dayzoff/features/widgets/authTextField.dart';
 
@@ -23,12 +24,20 @@ class LoginScreen extends StatelessWidget {
       buildWhen: (previous, current) => current is! AuthActionState,
       listener: (context, state) {
         if (state is NavigateToHomeScreen) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => HomeScreen(
-                        employeeData: state.employeeData,
-                      )));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(
+                employeeData: state.employeeData,
+              ),
+            ),
+          );
+        } else if (state is AuthErrorState) {
+          Utils().errorMessage(state.errorMessage.toString(), context);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+          );
         }
       },
       builder: (context, state) {
@@ -48,8 +57,10 @@ class LoginScreen extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               body: Center(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 20,
+                  ),
                   child: SingleChildScrollView(
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,10 +86,6 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const Text(
                           'Please login to continue',
-                          style: TextStyle(
-
-                              //fontWeight: FontWeight.w200,
-                              ),
                         ),
                         const SizedBox(
                           height: 25,
@@ -101,9 +108,12 @@ class LoginScreen extends StatelessWidget {
                         ),
                         AuthButton(
                           onTap: () {
-                            authBloc.add(LoginEvent(
+                            authBloc.add(
+                              LoginEvent(
                                 email: emailController.text.toString(),
-                                password: passwordController.text.toString()));
+                                password: passwordController.text.toString(),
+                              ),
+                            );
                           },
                           text: 'Login',
                         ),

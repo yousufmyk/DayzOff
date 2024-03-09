@@ -18,4 +18,21 @@ class Utils {
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
+
+  void sucessMessage(String message, BuildContext context) {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'All set!',
+        message: message,
+        contentType: ContentType.success,
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
 }

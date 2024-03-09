@@ -1,7 +1,7 @@
 import 'package:dayzoff/features/constants/constants.dart';
 import 'package:dayzoff/features/dataModels/employeeModel.dart';
 import 'package:dayzoff/features/home/bloc/home_bloc.dart';
-import 'package:dayzoff/features/home/ui/newRequestScreen.dart';
+import 'package:dayzoff/features/newRequest/ui/newRequestScreen.dart';
 import 'package:dayzoff/features/utils/textStyle.dart';
 import 'package:dayzoff/features/widgets/closedRequestWidget.dart';
 import 'package:dayzoff/features/widgets/rejectedRequestWidget.dart';
@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() =>
+      // ignore: no_logic_in_create_state
       _HomeScreenState(employeeData: employeeData);
 }
 
@@ -37,11 +38,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       listener: (context, state) {
         if (state is NavigateToNewRequestScreenState) {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => NewRequestScreen(
-                        employeeData: employeeData,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewRequestScreen(
+                employeeData: employeeData,
+              ),
+            ),
+          );
         }
       },
       builder: (context, state) {
