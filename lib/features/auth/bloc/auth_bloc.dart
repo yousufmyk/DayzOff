@@ -21,33 +21,45 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<FutureOr<void>> signUpEvent(
       SignUpEvent event, Emitter<AuthState> emit) async {
     try {
+      emit(LoadingState());
       await auth
           .createUserWithEmailAndPassword(
               email: event.email.toString(),
               password: event.password.toString())
-          .then((value) => {
-                fireStore
-                    .collection("users")
-                    .doc(event.email)
-                    .set({
-                      'id': value.user!.uid.toString(),
-                      'fullName': event.fullName,
-                      'preferredName': event.preferredName,
-                      'employee': event.employeID,
-                      'department': event.department,
-                      'phoneNumber': event.phoneNum,
-                      'email': event.email,
-                    })
-                    .then((value) => {
-                          print(
-                              'DocumentSnapshot added with ID: ${event.email}')
-                        })
-                    .onError((error, stackTrace) =>
-                        {print("this is the error ${error.toString()}")})
-              });
-    } catch (e) {
-      print("${e.toString()} this is the error fromt try catch");
+          .then(
+            (value) => {
+              fireStore.collection("users").doc(event.email).set(
+                {
+                  'id': value.user!.uid.toString(),
+                  'fullName': event.fullName,
+                  'preferredName': event.preferredName,
+                  'employee': event.employeID,
+                  'department': event.department,
+                  'phoneNumber': event.phoneNum,
+                  'email': event.email,
+                },
+              ),
+              emit(SignUpSucessState()),
+              // .then((value) => {
+              //   emit(SignUpSucessState()),
+              //       // print(
+              //       //     'DocumentSnapshot added with ID: ${event.email}')
+              //     })
+              // .onError((error, stackTrace) =>
+              //     {print("this is the error ${error.toString()}")})
+            },
+          );
+    } on FirebaseAuthException catch (e) {
+      final message = e.code;
+
+      emit(
+        AuthErrorState(errorMessage: message),
+      );
     }
+
+    //  catch (e) {
+    //   print("${e.toString()} this is the error fromt try catch");
+    // }
   }
 
   FutureOr<void> loginEvent(LoginEvent event, Emitter<AuthState> emit) async {
@@ -66,7 +78,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           EmployeeData employeeData = EmployeeData.fromMap(data);
           emit(NavigateToHomeScreen(employeeData: employeeData));
         });
-      } catch (e) {
+      } on FirebaseException catch (e) {
+        emit(AuthErrorState(errorMessage: e.toString()));
         //print(event.email);
         print('there is some error on getData bloc${e.toString()}');
         //This is the error I was getting when there was internet problem "there is some error on getData bloctype 'Null' is not a subtype of type 'String'
@@ -99,9 +112,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       //     }).onError((error, stackTrace) => {
 
       //     });
-    } catch (e) {
-      emit(AuthErrorState(errorMessage: e.toString()));
-      print(e.toString());
+    } on FirebaseAuthException catch (e) {
+      final message = e.code;
+
+      emit(
+        AuthErrorState(errorMessage: message),
+      );
     }
   }
 }
