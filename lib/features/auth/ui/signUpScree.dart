@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Utils().errorMessage(state.errorMessage.toString(), context);
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => SignUpScreen()),
+            MaterialPageRoute(builder: (context) => const SignUpScreen()),
           );
         } else if (state is SignUpSucessState) {
           Navigator.pushReplacement(

@@ -30,8 +30,7 @@ firebase_storage.FirebaseStorage storage =
       SignUpEvent event, Emitter<AuthState> emit) async {
         emit(LoadingState());
         firebase_storage.Reference ref =
-                      firebase_storage.FirebaseStorage.instance.ref("/${event.fullName!}/" +
-                          event.email.toString());
+                      firebase_storage.FirebaseStorage.instance.ref("/${event.fullName!}/${event.email}");
                   firebase_storage.UploadTask uploadTask =
                       ref.putFile(event.imageFile!.absolute);
                       Future.value(uploadTask).then((value) async {
