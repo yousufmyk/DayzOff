@@ -1,15 +1,20 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dayzoff/features/dataModels/employeeModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:meta/meta.dart';
+
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  
+
   AuthBloc() : super(AuthInitial()) {
     on<SignUpEvent>(signUpEvent);
     on<LoginEvent>(loginEvent);
@@ -17,17 +22,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   final auth = FirebaseAuth.instance;
   final fireStore = FirebaseFirestore.instance;
-
+  
+firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+  
   Future<FutureOr<void>> signUpEvent(
       SignUpEvent event, Emitter<AuthState> emit) async {
-    try {
-      emit(LoadingState());
+        emit(LoadingState());
+        firebase_storage.Reference ref =
+                      firebase_storage.FirebaseStorage.instance.ref("/${event.fullName!}/" +
+                          event.email.toString());
+                  firebase_storage.UploadTask uploadTask =
+                      ref.putFile(event.imageFile!.absolute);
+                      Future.value(uploadTask).then((value) async {
+                    var newUrl = await ref.getDownloadURL();
+                    try {
+      
+      
       await auth
           .createUserWithEmailAndPassword(
               email: event.email.toString(),
               password: event.password.toString())
           .then(
             (value) => {
+              
               fireStore.collection("users").doc(event.email).set(
                 {
                   'id': value.user!.uid.toString(),
@@ -37,6 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                   'department': event.department,
                   'phoneNumber': event.phoneNum,
                   'email': event.email,
+                  'image': newUrl,
                 },
               ),
               emit(SignUpSucessState()),
@@ -49,6 +68,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               //     {print("this is the error ${error.toString()}")})
             },
           );
+          
+          // .then((value) => {
+          //   firebase_storage.Reference ,ref =
+          //             firebase_storage.FirebaseStorage.instance.ref(event.fullName! +
+          //                 event.email.toString()),
+          //   firebase_storage.UploadTask ,uploadTask =
+          //             ref.putFile(event.imageFile!.absolute),
+          //   Future.value(uploadTask).then((value) async {
+          //           var newUrl = await ref.getDownloadURL();
+
+          //           String id = event.email.toString();
+
+          //           fireStore.collection("users").doc(event.email).set(
+          //               {
+          //                 'image': newUrl.toString()
+          //               }
+          //           );
+          //         })
+          // });
     } on FirebaseAuthException catch (e) {
       final message = e.code;
 
@@ -56,6 +94,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         AuthErrorState(errorMessage: message),
       );
     }
+                    });
+    
 
     //  catch (e) {
     //   print("${e.toString()} this is the error fromt try catch");

@@ -18,6 +18,7 @@ final class SignUpEvent extends AuthEvent {
   final String? phoneNum;
   final String? email;
   final String? password;
+  final File? imageFile;
 
   SignUpEvent({
     required this.fullName,
@@ -27,5 +28,6 @@ final class SignUpEvent extends AuthEvent {
     required this.phoneNum,
     required this.email,
     required this.password,
+    required this.imageFile,
   });
 }

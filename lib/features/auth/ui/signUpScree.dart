@@ -1,23 +1,63 @@
+import 'dart:io';
+
 import 'package:dayzoff/features/auth/bloc/auth_bloc.dart';
 import 'package:dayzoff/features/auth/ui/loginScreen.dart';
+import 'package:dayzoff/features/auth/ui/uploadProfilePictureScreen.dart';
 import 'package:dayzoff/features/constants/constants.dart';
 import 'package:dayzoff/features/utils/utils.dart';
 import 'package:dayzoff/features/widgets/authButton.dart';
 import 'package:dayzoff/features/widgets/authTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController fullnameController = TextEditingController();
+
   final TextEditingController preferrednameController = TextEditingController();
+
   final TextEditingController eIDController = TextEditingController();
+
   final TextEditingController departmentController = TextEditingController();
+
   final TextEditingController phoneNumController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
+  bool loading = false;
+
+  File? _image;
+
+  final picker = ImagePicker();
+
+  // firebase_storage.FirebaseStorage storage =
+  Future getGalleryImage() async {
+    final pickedFile =
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        Utils().errorMessage('No Image Picked', context);
+      }
+    });
+  }
+
+  File? getImage() {
+    return _image;
+  }
+
   final AuthBloc authBloc = AuthBloc();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
@@ -72,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                                 Navigator.of(context).pop();
                               },
                               icon:
-                                  const Icon(Icons.arrow_back_ios_new_rounded)),
+                                  const Icon(Icons.arrow_back_ios_new_rounded),),
                         ),
                         const Text(
                           'Create Account',
@@ -93,6 +133,56 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         const SizedBox(
                           height: 25,
+                        ),
+                        //here I'll be adding profile picture screen
+                        // UploadImageScreen(),
+
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              getGalleryImage();
+                            },
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.transparent,
+
+                              // decoration: BoxDecoration(
+                              //     border: Border.all(
+                              //   color: Colors.black,
+                              // )),
+                              child: _image != null
+                                  ? Center(
+                                      child: Container(
+                                      height: 60,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          border: Border.all(
+                                            color: orangeColor,
+                                          )),
+                                      child: CircleAvatar(
+                                          backgroundImage: FileImage(
+                                              File(_image!.absolute.path))),
+                                    ))
+                                  : Center(
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            border: Border.all(
+                                              color: orangeColor,
+                                            )),
+                                        child: const Icon(Icons.image),
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16,
                         ),
                         AuthTextField(
                           controller: fullnameController,
@@ -192,7 +282,9 @@ class SignUpScreen extends StatelessWidget {
                                 phoneNum: phoneNumController.text,
                                 email: emailController.text,
                                 password: passwordController.text,
+                                imageFile: _image,
                               ));
+                             // print(_image?.absolute.path);
                             },
                             text: 'SIGN UP',
                           ),
